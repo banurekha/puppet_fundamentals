@@ -4,7 +4,7 @@ class users::admins {
   }
 
   user { admin:
-    groups => 'staff',
+    gid    => 'staff',
     shell  => '/bin/csh',
   }
 }
