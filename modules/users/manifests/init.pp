@@ -1,4 +1,4 @@
-class fundamentals {
+class users {
   user { fundamentals:
     ensure => true,
   }
