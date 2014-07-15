@@ -5,19 +5,19 @@ class apache {
 
   file { '/var/www':
     ensure => directory,
-    owner => 'web',
-    group => 'web',
+    owner => 'root',
+    group => 'root',
   }
 
   file { '/var/www/html':
     ensure => directory,
-    owner => 'web',
-    group => 'web',
+    owner => 'root',
+    group => 'root',
   }
 
   file { '/var/www/html/index.html':
-    owner  => 'web',
-    group  => 'web',
+    owner  => 'root',
+    group  => 'root',
     source => 'puppet:///modules/apache/index.html',
   }
 }
