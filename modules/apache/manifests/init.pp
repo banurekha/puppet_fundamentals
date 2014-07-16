@@ -39,16 +39,17 @@ class apache(
     group  => $group,
     mode   => '0644',
     path   => '/var/www/html/index.html',
-    source => 'puppet:///modules/apache/index.html',
+    source => 'puppet:///modules/apache/welcome.html',
   }
 
   file { 'apache_config':
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0444',
-    path   => '/etc/httpd/conf/httpd.conf',
-    source => 'puppet:///modules/apache/httpd.conf',
-    notify => Service['apache'],
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
+    path    => '/etc/httpd/conf/httpd.conf',
+    source  => 'puppet:///modules/apache/httpd.conf',
+    require => Package['apache'],
+    notify  => Service['apache'],
   }
 
   service { 'apache':
