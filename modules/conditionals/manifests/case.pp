@@ -1,4 +1,4 @@
-class conditionals::out {
+class conditionals::case {
 
   case $::operatingsystem {
     'CentOS': {
