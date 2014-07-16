@@ -44,6 +44,7 @@ node default {
 
 node 'danhorst.puppetlabs.vm' {
   include danhorst_userprefs
+  include danhorst_userprefs::vim
   include users
   include hosts
   include apache
