@@ -10,6 +10,9 @@ Execute a smoke test:
 
     puppet apply --noop tests/your_file.pp
 
-Manully apply the puppet catalog as determined by the puppet master:
+Manually apply the puppet catalog as determined by the puppet master:
 
     puppet agent -t
+
+## Things of note
+- [Hiera can be used to set which classes get set on a node](http://docs.puppetlabs.com/hiera/1/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude)
