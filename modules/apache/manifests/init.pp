@@ -43,9 +43,9 @@ class apache(
   }
 
   file { 'apache_config':
-    owner  => $user,
-    group  => $group,
-    mode   => 0444,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0444',
     path   => '/etc/httpd/conf/httpd.conf',
     source => 'puppet:///modules/apache/httpd.conf',
     notify => Service['apache'],
