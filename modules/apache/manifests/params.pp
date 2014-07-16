@@ -21,7 +21,7 @@ class apache::params {
       $httpd_docroot = '/var/www/html'
     }
     default : {
-      notify( "Module ${module_name} is not supported on ${::osfamily}")
+      fail( "Module ${module_name} is not supported on ${::osfamily}")
     }
   }
 }

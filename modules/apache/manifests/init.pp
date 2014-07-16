@@ -37,9 +37,9 @@ class apache {
   }
 
   file { 'welcome_page':
-    ensure => file,
-    path   => "${httpd_docroot}/index.html",
-    source => 'puppet:///modules/apache/welcome.html',
+    ensure  => file,
+    path    => "${httpd_docroot}/index.html",
+    content => template('apache/welcome.html.erb'),
   }
 
   file { 'apache_config':
