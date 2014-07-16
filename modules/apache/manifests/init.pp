@@ -14,14 +14,12 @@ class apache {
     owner   => $httpd_user,
     group   => $httpd_group,
     mode    => '0644',
-    require => User['apache'],
   }
 
   user  { 'apache':
     ensure  => present,
     name    => $httpd_user,
     gid     => $httpd_group,
-    require => Group['apache'],
   }
 
   group  { 'apache':
