@@ -1,41 +1,46 @@
-class apache(
-  $owner        = 'apache',
-  $group        = 'apache',
-  $package_name = 'httpd',
-){
+class apache {
+  include apache::params
+
+  $httpd_user    = $apache::params::httpd_user
+  $httpd_group   = $apache::params::httpd_group
+  $httpd_package = $apache::params::httpd_package
+  $httpd_service = $apache::params::httpd_service
+  $httpd_conf    = $apache::params::httpd_conf
+  $httpd_confdir = $apache::params::httpd_confdir
+  $httpd_dir     = $apache::params::httpd_dir
+  $httpd_docroot = $apache::params::httpd_docroot
+
   File {
-    owner => $owner,
-    group => $group,
-    mode  => '0644',
+    owner   => $httpd_user,
+    group   => $httpd_group,
+    mode    => '0644',
+    require => User['apache'],
   }
 
   user  { 'apache':
-    ensure => present,
-    name   => $owner,
-    gid    => $group,
+    ensure  => present,
+    name    => $httpd_user,
+    gid     => $httpd_group,
+    require => Group['apache'],
   }
 
   group  { 'apache':
     ensure => present,
-    name   => $group,
+    name   => $httpd_group,
   }
 
   package { 'apache':
     ensure => present,
-    name   => $package_name,
+    name   => $httpd_package,
   }
 
-  file { '/var/www':
-    ensure => directory,
-  }
-
-  file { '/var/www/html':
+  file { $httpd_dir:
     ensure => directory,
   }
 
   file { 'welcome_page':
     ensure => file,
-    path   => '/var/www/html/index.html',
+    path   => "${httpd_docroot}/index.html",
     source => 'puppet:///modules/apache/welcome.html',
   }
 
@@ -44,15 +49,15 @@ class apache(
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    path    => '/etc/httpd/conf/httpd.conf',
-    source  => 'puppet:///modules/apache/httpd.conf',
+    path    => "${httpd_confdir}/${httpd_conf}",
+    source  => "puppet:///modules/apache/${httpd_conf}",
     require => Package['apache'],
     notify  => Service['apache'],
   }
 
   service { 'apache':
     ensure  => running,
-    name    => $package_name,
+    name    => $httpd_service,
     require => Package['apache'],
   }
 }
