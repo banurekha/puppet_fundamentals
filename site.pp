@@ -44,4 +44,6 @@ node default {
 
 node 'danhorst.puppetlabs.vm' {
   include users
+  include hosts
+  include apache
 }
