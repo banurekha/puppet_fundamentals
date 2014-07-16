@@ -40,6 +40,7 @@ class apache(
   }
 
   file { 'apache_config':
+    ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
