@@ -1,18 +1,22 @@
 class apache(
-  $user  = 'apache',
-  $group = 'apache',
+  $user         = 'apache',
+  $group        = 'apache',
+  $package_name = 'httpd',
 ){
-  user  {'apache':
+  user  { 'apache':
     ensure => present,
+    name   => $user,
     gid    => $group,
   }
 
-  group  {'apache':
+  group  { 'apache':
     ensure => present,
+    name   => $group,
   }
 
-  package { 'httpd':
+  package { 'apache':
     ensure => present,
+    name   => $package_name,
   }
 
   file { '/var/www':
@@ -44,5 +48,12 @@ class apache(
     mode   => 0444,
     path   => '/etc/httpd/conf/httpd.conf',
     source => 'puppet:///modules/apache/httpd.conf',
+    notify => Service['apache'],
+  }
+
+  service { 'apache':
+    ensure  => running,
+    name    => $package_name,
+    require => Package['apache'],
   }
 }
