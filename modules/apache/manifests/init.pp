@@ -1,11 +1,17 @@
 class apache(
-  $user         = 'apache',
+  $owner        = 'apache',
   $group        = 'apache',
   $package_name = 'httpd',
 ){
+  File {
+    owner => $owner,
+    group => $group,
+    mode  => '0644',
+  }
+
   user  { 'apache':
     ensure => present,
-    name   => $user,
+    name   => $owner,
     gid    => $group,
   }
 
@@ -21,23 +27,14 @@ class apache(
 
   file { '/var/www':
     ensure => directory,
-    owner  => $user,
-    group  => $group,
-    mode   => '0775',
   }
 
   file { '/var/www/html':
     ensure => directory,
-    owner  => $user,
-    group  => $group,
-    mode   => '0775',
   }
 
   file { 'welcome_page':
     ensure => file,
-    owner  => $user,
-    group  => $group,
-    mode   => '0644',
     path   => '/var/www/html/index.html',
     source => 'puppet:///modules/apache/welcome.html',
   }
