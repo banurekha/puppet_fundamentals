@@ -1,15 +1,13 @@
-class apache {
-  include apache::params
-
-  $httpd_user    = $apache::params::httpd_user
-  $httpd_group   = $apache::params::httpd_group
-  $httpd_package = $apache::params::httpd_package
-  $httpd_service = $apache::params::httpd_service
-  $httpd_conf    = $apache::params::httpd_conf
-  $httpd_confdir = $apache::params::httpd_confdir
-  $httpd_dir     = $apache::params::httpd_dir
-  $httpd_docroot = $apache::params::httpd_docroot
-
+class apache(
+  $httpd_user    = $apache::params::httpd_user,
+  $httpd_group   = $apache::params::httpd_group,
+  $httpd_package = $apache::params::httpd_package,
+  $httpd_service = $apache::params::httpd_service,
+  $httpd_conf    = $apache::params::httpd_conf,
+  $httpd_confdir = $apache::params::httpd_confdir,
+  $httpd_dir     = $apache::params::httpd_dir,
+  $httpd_docroot = $apache::params::httpd_docroot,
+) inherits apache::params {
   File {
     owner => $httpd_user,
     group => $httpd_group,
