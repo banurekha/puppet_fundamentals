@@ -11,15 +11,15 @@ class apache {
   $httpd_docroot = $apache::params::httpd_docroot
 
   File {
-    owner   => $httpd_user,
-    group   => $httpd_group,
-    mode    => '0644',
+    owner => $httpd_user,
+    group => $httpd_group,
+    mode  => '0644',
   }
 
   user  { 'apache':
-    ensure  => present,
-    name    => $httpd_user,
-    gid     => $httpd_group,
+    ensure => present,
+    name   => $httpd_user,
+    gid    => $httpd_group,
   }
 
   group  { 'apache':
