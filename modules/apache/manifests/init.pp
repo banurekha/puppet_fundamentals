@@ -1,7 +1,10 @@
-class apache {
+class apache(
+  $user  = 'apache',
+  $group = 'apache',
+){
   user  {'apache':
     ensure => present,
-    gid    => 'apache'
+    gid    => $group,
   }
 
   group  {'apache':
@@ -14,19 +17,32 @@ class apache {
 
   file { '/var/www':
     ensure => directory,
-    owner => 'apache',
-    group => 'apache',
+    owner  => $user,
+    group  => $group,
+    mode   => '0775',
   }
 
   file { '/var/www/html':
     ensure => directory,
-    owner => 'apache',
-    group => 'apache',
+    owner  => $user,
+    group  => $group,
+    mode   => '0775',
   }
 
-  file { '/var/www/html/index.html':
-    owner  => 'apache',
-    group  => 'apache',
+  file { 'welcome_page':
+    ensure => file,
+    owner  => $user,
+    group  => $group,
+    mode   => '0644',
+    path   => '/var/www/html/index.html',
     source => 'puppet:///modules/apache/index.html',
+  }
+
+  file { 'apache_config':
+    owner  => $user,
+    group  => $group,
+    mode   => 0444,
+    path   => '/etc/httpd/conf/httpd.conf',
+    source => 'puppet:///modules/apache/httpd.conf',
   }
 }
