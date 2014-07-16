@@ -51,6 +51,13 @@ class apache(
     notify  => Service['apache'],
   }
 
+  apache::vhost { 'testing.puppetlabs.vm':
+    docroot => "${httpd_docroot}/testing",
+    options => "-MultiViews",
+    require => Package['apache'],
+    notify  => Service['apache'],
+  }
+
   service { 'apache':
     ensure  => running,
     name    => $httpd_service,
