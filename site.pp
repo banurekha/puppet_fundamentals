@@ -40,7 +40,8 @@ node default {
   # Example:
   #   class { 'my_class': }
   notify { "Hello ${fqdn}": }
-
-  include users
 }
 
+node 'danhorst.puppetlabs.vm' {
+  include users
+}
