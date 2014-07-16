@@ -1,5 +1,5 @@
 class danhorst_userprefs {
-  file { "${userprefs::userprefs::homedir}/.gitconfig" :
+  file { "${$userprefs::profile::homedir}/.gitconfig" :
     ensure => file,
     source => 'puppet:///modules/danhorst_userprefs/gitconfig',
     mode   => '0444',
