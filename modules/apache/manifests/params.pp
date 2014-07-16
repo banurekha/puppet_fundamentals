@@ -9,6 +9,7 @@ class apache::params {
       $httpd_confdir = '/etc/apache2'
       $httpd_dir     = '/var/www'
       $httpd_docroot = '/var/www'
+      $httpd_logdir  = '/var/log/apache2'
     }
     'RedHat': {
       $httpd_user    = 'apache'
@@ -19,6 +20,7 @@ class apache::params {
       $httpd_confdir = '/etc/httpd/conf'
       $httpd_dir     = ['/var/www','/var/www/html']
       $httpd_docroot = '/var/www/html'
+      $httpd_logdir  = '/var/log/httpd'
     }
     default : {
       fail( "Module ${module_name} is not supported on ${::osfamily}")
