@@ -1,0 +1,41 @@
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias vi='vim'
+alias v='vim'
+
+alias ga='git add . && gst'
+alias gamd='git commit -a --amend --no-edit'
+alias gb='git branch -vv'
+alias gba='git branch -a'
+alias gbl='git branch -l'
+alias gca='git commit -v -a'
+alias gd='git diff'
+alias gdh='git diff HEAD'
+alias gH='git reset --hard HEAD'
+alias gl='git lg'
+alias glp='gl -p'
+alias gmt='git mergetool'
+alias gpo='git push origin master'
+alias gpr='git pull --rebase'
+alias grc='git rebase --continue'
+alias grm='git ls-files -d | xargs git rm; gst'
+alias gsh='git show'
+alias gst='git status --ignore-submodules=dirty'
+
+#export TERM=ansi
+
+# Point the PE installer to the cached agent installer
+export q_tarball_server="/usr/src/installer/"
+export q_pe_check_for_updates=n
+
+validate_yaml() {
+  ruby -ryaml -e "YAML.load_file '$1'"
+}
+
+validate_erb() {
+  erb -P -x -T '-' $1 | ruby -c
+}
+export EDITOR=vim
