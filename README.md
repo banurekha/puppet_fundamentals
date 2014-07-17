@@ -1,5 +1,11 @@
 # Puppet Fundamentals Exercises
 
+## Things of note
+- [Type Reference](http://docs.puppetlabs.com/references/latest/type.html)
+- [Puppet Forge](https://forge.puppetlabs.com)
+- Hiera can be used to set values in parametrized classes without requiring any code changes.
+- [Hiera can be used to set which classes get applied on a node](http://docs.puppetlabs.com/hiera/1/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude)
+
 ## Commands to remember
 
 Syntax validation:
@@ -8,13 +14,12 @@ Syntax validation:
 
 Execute a smoke test:
 
-    puppet apply --noop tests/your_file.pp
+    puppet apply --noop tests/your_test_file.pp
 
 Manually apply the puppet catalog as determined by the puppet master:
 
     puppet agent -t
 
-## Things of note
-- [Hiera can be used to set which classes get set on a node](http://docs.puppetlabs.com/hiera/1/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude)
-- [Typre Reference](http://docs.puppetlabs.com/references/latest/type.html)
-- [Puppet Forge](https://forge.puppetlabs.com)
+Install a puppet module locally:
+
+    puppet module install 'author/module'
