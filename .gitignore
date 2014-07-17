@@ -1,2 +1,8 @@
 *.swp
 modules/userprefs
+
+modules/concat/
+modules/mysql/
+modules/stdlib/
+modules/wordpress/
+
