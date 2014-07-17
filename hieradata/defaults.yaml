@@ -1,4 +1,6 @@
 ---
 message: "This is a sample variable that came from a Hiera datasource"
 apache::docroot: '/var/www'
-danhorst_wordpress::db_password: 'DO-NO-PUT-THIS-IN-SOURCE-CONTROL'
+mysql::bindings::php_enable: true
+wordpress::db_password: 'DO-NO-PUT-THIS-IN-SOURCE-CONTROL'
+wordpress::install_dir: '/var/www/html'
