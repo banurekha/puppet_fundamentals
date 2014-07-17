@@ -1,4 +1,9 @@
 class danhorst_userprefs::gem {
+  package { 'ruby-devel':
+    ensure   => 'installed',
+    provider => 'yum',
+  }
+
   file { 'gemrc':
     path    => '/etc/gemrc',
     owner   => 'root',
